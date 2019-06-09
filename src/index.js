@@ -4,23 +4,24 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import { HashRouter } from 'react-router-dom';
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
-// import {Reducer} from './redux';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import {Reducer} from './Reducer';
+// import Perf from 'react-addons-perf';
 
-
-// let store = createStore(Reducer);
+// const win = window;
+// win.Perf = Perf; 
+let store = createStore(Reducer);
 
 render(
-    // <Provider store={store}>
+    <Provider store={store}>
         <HashRouter>
             <App />
         </HashRouter>
-    // </Provider>
-    ,
+    </Provider>,
     document.getElementById('root')
 );
 

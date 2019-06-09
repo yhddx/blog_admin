@@ -1,13 +1,17 @@
 @listWidth: 40em;
-@mine     : introduction;
-@listStyle: list-style;
+@radius    : 50px;
+@mine      : introduction;
+@listStyle : list-style;
+@boxRadius : 50px;
+@boxRight  :100px;
+@boxTop    : 250px;
+@delay:0.05s;
+
 
 body {
-    min-height : 100vh;
-    box-sizing : border-box;
-    margin     : 0;
-    padding-top: calc(50vh - 6em);
-    font       : 150%/1.6 Baskerville, Palatino, serif;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin    : 0;
 }
 
 body,
@@ -16,16 +20,28 @@ body,
 }
 
 .@{mine} {
-    position     : relative;
-    margin       : 0 auto;
-    padding      : 1em;
-    max-width    : 33em;
-    background   : hsla(0, 0%, 100%, .25) border-box;
-    overflow     : hidden;
-    border-radius: .3em;
-    box-shadow   : 0 0 0 1px hsla(0, 0%, 100%, .3) inset,
+    right           : 0;
+    height          : 260px;
+    bottom          : 0;
+    position        : absolute;
+    margin          : auto;
+    top             : 0;
+    left            : 0;
+    // position     : relative;
+    // margin       : 0 auto;
+    padding         : 1em;
+    max-width       : 33em;
+    background      : hsla(0, 0%, 100%, .25) border-box;
+    overflow        : hidden;
+    border-radius   : .3em;
+    box-shadow      : 0 0 0 1px hsla(0, 0%, 100%, .3) inset,
         0 .5em 1em rgba(0, 0, 0, 0.6);
-    text-shadow: 0 1px 1px hsla(0, 0%, 100%, .3);
+    text-shadow   : 0 1px 1px hsla(0, 0%, 100%, .3);
+    font-size     : 30px;
+    line-height   : 1.6em;
+    font-family   : Baskerville, Palatino, serif;
+    // font-weight: bold;
+    color         : #000;
 }
 
 .@{mine}::before {
@@ -83,10 +99,11 @@ body,
 }
 
 blockquote p {
-    font-style : normal;
-    font-size  : 0.7em;
-    white-space: nowrap;
-    overflow   : hidden;
+    font-style   : normal;
+    font-size    : 0.7em;
+    white-space  : nowrap;
+    overflow     : hidden;
+    margin-bottom: 0;
 
     &.line1 {
         width: 26ch;
@@ -105,7 +122,6 @@ blockquote p {
         animation: typing3 13s steps(17) infinite,
             caret 1s steps(1) infinite;
     }
-
 }
 
 ul.icon {
@@ -113,23 +129,27 @@ ul.icon {
     position    : fixed;
     right       : 2em;
     top         : 3em;
+    z-index     : 2;
 
-    &:hover {
-        cursor: pointer;
-    }
+
     & li {
-        width:2em;
-        height:2em;
+        width        : 4em;
+        height       : 4em;
         position     : relative;
-        margin: 1px 0px 10px auto;
-        padding: 0 4px;
-        max-width: 2em;
-        background   : hsla(0, 0%, 100%, .25) border-box;
+        margin       : 1px 0px 10px auto;
+        text-align   : center;
+        line-height  : 4em;
+        // max-width : 4em;
+        background   : hsla(0, 0%, 100%, 1) border-box;
         overflow     : hidden;
         border-radius: .3em;
         box-shadow   : 0 0 0 1px hsla(0, 0%, 100%, .3) inset,
             0 .5em 1em rgba(0, 0, 0, 0.6);
         text-shadow: 0 1px 1px hsla(0, 0%, 100%, .3);
+
+        &:hover {
+            cursor: pointer;
+        }
 
         &::before {
             content       : '';
@@ -150,15 +170,198 @@ ul.articleList {
     width       : @listWidth;
     margin      : auto;
     @{listStyle}: none;
-    & li{
-        background:#ddd;
+
+    & li {
+        background: #ddd;
     }
 
-    
+
 }
 
-div.articlDetail {
-    width     : @listWidth;
-    margin    : auto;
-    background: #ddd;
+.img-icon {
+    width        : 4em;
+    height       : 4em;
+    position     : relative;
+    margin       : 1px 0px 10px auto;
+    text-align   : center;
+    line-height  : 4em;
+    // max-width : 4em;
+    background   : hsla(0, 0%, 100%, 1) border-box;
+    overflow     : hidden;
+    border-radius: .3em;
+    box-shadow   : 0 0 0 1px hsla(0, 0%, 100%, .3) inset,
+        0 .5em 1em rgba(0, 0, 0, 0.6);
+    text-shadow: 0 1px 1px hsla(0, 0%, 100%, .3);
+}
+
+.dropdown-outwrapper {}
+
+.dropdown-wrapper {
+    box-shadow      : 0 0 8px rgba(0, 0, 0, 0.1);
+    height          : 3em;
+    background-color: #fff;
+    padding-top     : 5px;
+    min-width       : 100vw;
+    position        : fixed;
+    z-index         : 10;
+}
+
+.dropdown {
+    // margin-left: 88em;
+}
+
+.icon-rotate {
+    position     : fixed;
+    right        : @boxRight;
+    top          : @boxTop;
+    z-index      : 10;
+    width        : @boxRadius;
+    height       : @boxRadius;
+    // border    :1px solid #000;
+    border-radius: @boxRadius/2;
+
+    // border  : 1px solid #000;
+    & div.center-rotate {
+        box-shadow      : 0 0 0 1px hsla(0, 0%, 100%, .3) inset,
+        0 .5em 1em rgba(0, 0, 0, 0.6);
+    }
+
+
+    & div:not(:first-child) {
+        visibility: hidden;
+        box-shadow      : 0 0 0 1px hsla(0, 0%, 100%, .3) inset,
+        0 .5em 1em rgba(0, 0, 0, 0.6);
+    }
+
+    & div {
+        position     : absolute;
+        width        : 50px;
+        height       : 50px;
+        line-height: 50px;
+        text-align: center;
+        border-radius: 25px;
+        left         : 0;
+        right        : 0;
+        top          : 0;
+        bottom       : 0;
+        margin       : auto;
+        // border    :1px solid #000;
+    }
+
+    & .one-rotate {
+        // visibility: hidden;
+        transform    : translate(@radius * sin(0deg), -@radius * cos(0deg));
+    }
+
+    & .two-rotate {
+        // visibility     : hidden;
+        // animation-delay: 2s;
+        transform         : translate(@radius * sin(45deg), -@radius * cos(45deg));
+    }
+
+    & .three-rotate {
+        // animation-delay: 3s;
+        // visibility     : hidden;
+        transform         : translate(@radius * sin(90deg), -@radius * cos(90deg));
+    }
+
+    & .four-rotate {
+        // visibility: hidden;
+        transform    : translate(@radius * sin(135deg), -@radius * cos(135deg));
+    }
+
+    & .five-rotate {
+        // visibility: hidden;
+        transform    : translate(@radius * sin(180deg), -@radius * cos(180deg));
+    }
+
+    & .six-rotate {
+        // visibility: hidden;
+        transform    : translate(@radius * sin(225deg), -@radius * cos(225deg));
+    }
+
+    & .seven-rotate {
+        // visibility: hidden;
+        transform    : translate(@radius * sin(270deg), -@radius * cos(270deg));
+    }
+
+    & .eghit-rotate {
+        // visibility: hidden;
+        transform    : translate(@radius * sin(315deg), -@radius * cos(315deg));
+    }
+
+    cursor: pointer;
+
+    &:hover {
+        right : @boxRight - @boxRadius/2;
+        top   : @boxTop - @boxRadius/2;
+        width : @boxRadius * 2;
+        height: @boxRadius * 2;
+
+        div.one-rotate {
+            animation          : mymove 1s;
+            animation-fill-mode: forwards;
+            // visibility      : visible;
+        }
+
+        div.two-rotate {
+            // animation-delay : 1s;
+            animation          : mymove 1s @delay;
+            animation-fill-mode: forwards;
+            // visibility      : visible;
+        }
+
+        div.three-rotate {
+            // animation-delay : 2s;
+            animation          : mymove 1s @delay * 2;
+            animation-fill-mode: forwards;
+            // visibility      : visible;
+        }
+
+        div.four-rotate {
+            // animation-delay : 3s;
+            animation          : mymove 1s @delay * 3;
+            animation-fill-mode: forwards;
+            // visibility      : visible;
+        }
+
+        div.five-rotate {
+            // animation-delay : 4s;
+            animation          : mymove 1s @delay * 4;
+            animation-fill-mode: forwards;
+            // visibility      : visible;
+        }
+
+        div.six-rotate {
+            // animation-delay : 5s;
+            animation          : mymove 1s @delay * 5;
+            animation-fill-mode: forwards;
+            // visibility      : visible;
+        }
+
+        div.seven-rotate {
+            // animation-delay : 6s;
+            animation          : mymove 1s @delay * 6;
+            animation-fill-mode: forwards;
+            // visibility      : visible;
+        }
+
+        div.eghit-rotate {
+            // animation-delay : 7s;
+            animation          : mymove 1s @delay * 7;
+            animation-fill-mode: forwards;
+            // visibility      : visible;
+        }
+    }
+
+}
+
+@keyframes mymove {
+    from {
+        visibility: hidden;
+    }
+
+    to {
+        visibility: visible;
+    }
 }

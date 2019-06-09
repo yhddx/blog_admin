@@ -1,0 +1,47 @@
+@import '~antd/dist/antd.css';
+
+/* .App {
+  text-align: center;
+} */
+
+/* body{
+    background-image: none;
+} */
+
+.addButton{
+  width: 80px;
+  height: 40px;
+  float: left;
+  /* margin:20px 0 30px 0; */
+}
+.bloglist{
+  background-color: #fff;
+  min-height: 100vh;
+  padding-top: 90px;
+}
+.bloglist-wrapper{
+  width: 70vw;
+  margin:0 auto;
+}
+.bloglist-content{
+  width: 500px;
+  margin-left: 30px;
+  /* overflow: hidden; text-overflow:ellipsis; */
+}
+.articlelist-wrapper{
+  overflow: hidden;
+}
+
+.page{
+  float: right;
+  height: 40px;
+  line-height: 40px;
+  /* border:solid 1px; */
+}
+.page-link{
+  padding:0 4px;
+}
+
+.page-link-active{
+  text-decoration: underline;
+}

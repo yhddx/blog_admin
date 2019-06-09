@@ -11,8 +11,8 @@ class Delete extends Component {
     }
 
     cancel(e) {
-        message.error('Click on No');
-      }
+      message.error('Click on No');
+    }
 
     confirm(idx, e) {
         let formData = new FormData();
@@ -41,7 +41,7 @@ class Delete extends Component {
     render() {
         let idx = this.props.deleteIndex;
         return (
-            <Popconfirm title="Are you sure delete this task?" onConfirm={this.confirm.bind(this, idx)} onCancel={this.cancel} okText="Yes" cancelText="No">
+            <Popconfirm title="Are you sure delete this task?" onConfirm={this.props.confirm} onCancel={this.cancel} okText="Yes" cancelText="No">
                 <a href="#">Delete</a>
             </Popconfirm>
         )
